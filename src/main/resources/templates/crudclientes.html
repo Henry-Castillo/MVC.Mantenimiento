@@ -101,7 +101,7 @@
                         <td th:text="${cliente.dni}">DNI</td>
                         <td>
                             <a th:href="@{/cargar(id=${cliente.id})}">Editar</a>
-                            <a th:href="@{/cargar/eliminar(id=${cliente.id})}" onclick="return confirm('¿Eliminar?')">Eliminar</a>
+                            <a th:href="@{/eliminar(id=${cliente.id})}" onclick="return confirm('¿Eliminar?')">Eliminar</a>
                         </td>
                     </tr>
                 </thead>
