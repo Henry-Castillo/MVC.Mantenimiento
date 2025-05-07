@@ -20,6 +20,10 @@ public class ClienteService {
     @Autowired
     private IClientRepository repoCli;
 
+    public ClienteService(IClientRepository r) {
+        this.repoCli = r;
+    }
+
     public List<Cliente> listar() {
         return repoCli.findAll();
     }
@@ -28,9 +32,8 @@ public class ClienteService {
         return repoCli.findById(id).orElse(null);
     }
 
-    public void guardar(Cliente cliente) {
-        repoCli.save(cliente);
-        
+    public Cliente guardar(Cliente c) {
+        return repoCli.save(c);
     }
 
     public void eliminar(Long id) {
