@@ -37,6 +37,6 @@ public class ClienteService {
     }
 
     public void eliminar(Long id) {
-        repoCli.deleteById(id);
+         repoCli.deleteById(id);
     }
 }

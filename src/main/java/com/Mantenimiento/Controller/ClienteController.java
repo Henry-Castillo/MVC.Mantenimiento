@@ -10,8 +10,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,11 +50,22 @@ public class ClienteController {
         return serCli.listar();    // serializa a JSON
     }
 
+    @GetMapping("/clientes/{id}")
+    public Cliente obtenerCliente(@PathVariable Long id){
+        return serCli.obtener(id);
+    }
+    
     @PostMapping("/cargar")
-    public Cliente leerDatosCrud(@RequestBody Cliente c) {
+    public Cliente guardarCliente(@RequestBody Cliente c) {
         System.out.println("Recibido cliente: " + c.getNombre());
         return serCli.guardar(c);
 
+    }
+    
+    @PutMapping("/clientes")
+    public Cliente actualizarCliente(@RequestBody Cliente c) {
+        System.out.println("Actualizando Cliente: " + c.getNombre());
+        return serCli.guardar(c);
     }
 
     //Controlador para leer los datos ingresados
@@ -61,11 +74,9 @@ public class ClienteController {
         serCli.guardar(cliente);
         return "redirect:/cargar";
     }*/
-
-    @GetMapping("/eliminar")
-    public String listarCliente(@RequestParam Long id) {
+    @DeleteMapping("/clientes/{id}")
+    public void eliminarCliente(@PathVariable Long id) {
         serCli.eliminar(id);
-        return "redirect:/cargar";
     }
 
 }
